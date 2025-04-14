@@ -12,7 +12,7 @@ Task management web application built with **React + Redux Toolkit** and a mock 
 - 📊 Dashboard view with task statistics  
 - 💻 Responsive UI using Tailwind CSS  
 - 🛠 Mock API powered by JSON Server  
-- 🌍 Ready for deployment on Netlify & Railway  
+- 🌍 Ready for deployment on Netlify & Railway
 
 ---
 
@@ -28,8 +28,8 @@ Task management web application built with **React + Redux Toolkit** and a mock 
 
 | Part      | URL                                                                 |
 |-----------|----------------------------------------------------------------------|
-| 🖥 Frontend | [https://taskhub-react.vercel.app](https://taskhub-react.vercel.app)         |
-| 🗃 Backend  | [https://taskhub-json.up.railway.app](https://taskhub-json.up.railway.app)   |
+| 🖥 Frontend | [https://task-hub-1.vercel.app/](https://task-hub-1.vercel.app/)         |
+| 🗃 Backend  | [https://task-hub-1.vercel.app/](https://task-hub-1.vercel.app/)   |
 
 ---
 
