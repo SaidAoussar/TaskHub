@@ -1,0 +1,90 @@
+{
+  "projects": [
+    {
+      "id": "1",
+      "name": "Website Redesign",
+      "description": "Redesign the company website with modern UI",
+      "createdAt": "2023-05-15T10:00:00Z"
+    },
+    {
+      "id": "2",
+      "name": "Mobile App Development",
+      "description": "Develop a mobile app for iOS and Android",
+      "createdAt": "2023-06-01T09:15:00Z"
+    },
+    {
+      "id": "3",
+      "name": "Marketing Campaign",
+      "description": "Q3 Marketing campaign planning and execution",
+      "createdAt": "2023-06-20T08:00:00Z"
+    },
+    {
+      "id": "541d",
+      "name": "auth",
+      "description": "test auth",
+      "color": "#10b981"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "1",
+      "projectId": "1",
+      "title": "Design homepage mockup",
+      "description": "Create a mockup for the new homepage design",
+      "status": "completed",
+      "priority": "high",
+      "createdAt": "2023-05-15T10:30:00Z"
+    },
+    {
+      "id": "2",
+      "projectId": "1",
+      "title": "Implement responsive navbar",
+      "description": "Create a responsive navigation bar for the website",
+      "status": "in_progress",
+      "priority": "medium",
+      "createdAt": "2023-05-20T14:30:00Z"
+    },
+    {
+      "id": "3",
+      "projectId": "2",
+      "title": "Design app wireframes",
+      "description": "Create wireframes for all app screens",
+      "status": "to_do",
+      "priority": "high",
+      "createdAt": "2023-06-01T09:30:00Z"
+    },
+    {
+      "id": "4",
+      "title": "Research API integration options",
+      "description": "Research and document API integration options for the app",
+      "projectId": "3",
+      "projectName": "Marketing Campaign",
+      "status": "completed",
+      "priority": "medium",
+      "dueDate": null,
+      "createdAt": "2023-06-02T10:00:00Z"
+    },
+    {
+      "id": "5",
+      "title": "Brainstorm campaign ideas",
+      "description": "Organize a brainstorming session for campaign ideas",
+      "projectId": "3",
+      "projectName": "Marketing Campaign",
+      "status": "to_do",
+      "priority": "low",
+      "dueDate": null,
+      "createdAt": "2023-06-20T08:30:00Z"
+    },
+    {
+      "id": "3846",
+      "title": "implemenet login",
+      "description": "",
+      "projectId": "541d",
+      "projectName": "auth",
+      "status": "to_do",
+      "priority": "medium",
+      "dueDate": "2025-04-20T23:00:00.000Z",
+      "createdAt": "2025-04-14T10:10:05.237Z"
+    }
+  ]
+}

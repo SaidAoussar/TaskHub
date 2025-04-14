@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskHub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Include Tailwind CSS Icons (Heroicons) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@heroicons/css/outline@1.0.4/dist-outline.min.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              300: '#7dd3fc',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+            },
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+  <div class="flex h-screen flex-col md:flex-row">
+    <!-- Sidebar -->
+    <aside
+      class="fixed inset-y-0 left-0 z-40 w-64 transform border-r bg-white dark:bg-gray-800 transition-transform duration-200 ease-in-out md:relative md:translate-x-0 dark:border-gray-700">
+      <div class="flex h-14 items-center border-b px-4 dark:border-gray-700">
+        <h2 class="text-lg font-semibold">Projects</h2>
+      </div>
+      <div class="h-[calc(100vh-3.5rem)] overflow-y-auto">
+        <div class="px-3 py-2">
+          <div class="space-y-1 py-2">
+            <h3 class="mb-2 px-4 text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Views</h3>
+            <button
+              class="w-full flex items-center justify-start px-4 py-2 text-sm font-medium rounded-md bg-gray-100 dark:bg-gray-700">
+              <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+              </svg>
+              All Tasks
+            </button>
+            <button
+              class="w-full flex items-center justify-start px-4 py-2 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+              <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Today
+            </button>
+            <button
+              class="w-full flex items-center justify-start px-4 py-2 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+              <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Completed
+            </button>
+          </div>
+          <div class="py-2">
+            <div class="flex items-center justify-between mb-2 px-4">
+              <h3 class="text-xs font-semibold uppercase text-gray-500 dark:text-gray-400">Projects</h3>
+              <button class="h-5 w-5 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 m-auto" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+                <span class="sr-only">Add Project</span>
+              </button>
+            </div>
+            <div class="space-y-1">
+              <button
+                class="w-full flex items-center justify-start px-4 py-2 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                </svg>
+                Work
+              </button>
+              <button
+                class="w-full flex items-center justify-start px-4 py-2 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                </svg>
+                Personal
+              </button>
+              <button
+                class="w-full flex items-center justify-start px-4 py-2 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                </svg>
+                Home
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex flex-1 flex-col overflow-hidden">
+      <!-- Header -->
+      <header class="border-b bg-white dark:bg-gray-800 dark:border-gray-700 px-4 py-3 md:px-6">
+        <div class="flex flex-col space-y-2 md:flex-row md:items-center md:justify-between md:space-y-0">
+          <h1 class="text-xl font-semibold md:text-2xl">TaskHub</h1>
+          <div class="flex items-center space-x-2">
+            <!-- Search -->
+            <div class="relative w-full max-w-sm">
+              <svg xmlns="http://www.w3.org/2000/svg"
+                class="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500 dark:text-gray-400" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input type="search" placeholder="Search tasks..."
+                class="w-full rounded-md border border-gray-300 bg-white px-9 py-2 text-sm placeholder-gray-500 focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary-500">
+              <button class="absolute right-1 top-1 rounded-md p-1 hover:bg-gray-100 dark:hover:bg-gray-600 hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-500 dark:text-gray-400" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                <span class="sr-only">Clear search</span>
+              </button>
+            </div>
+            <!-- Toggle Stats Button -->
+            <button
+              class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+              <span class="sr-only">Toggle statistics</span>
+            </button>
+            <!-- New Task Button -->
+            <button
+              class="inline-flex h-9 items-center justify-center rounded-md bg-primary-600 px-3 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:bg-primary-700 dark:hover:bg-primary-600">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span class="hidden md:inline">New Task</span>
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Content Area -->
+      <main class="flex-1 overflow-y-auto p-4 md:p-6">
+        <!-- Statistics Section -->
+        <div class="mb-8 rounded-lg border bg-white p-4 shadow-sm dark:bg-gray-800 dark:border-gray-700">
+          <h2 class="mb-4 text-xl font-semibold">Dashboard Statistics</h2>
+
+          <!-- Tabs -->
+          <div class="w-full">
+            <!-- Tab List -->
+            <div class="mb-4 grid w-full grid-cols-2 rounded-md bg-gray-100 p-1 dark:bg-gray-700">
+              <button
+                class="rounded-md bg-white py-2 px-4 text-sm font-medium shadow-sm dark:bg-gray-800">Overview</button>
+              <button
+                class="py-2 px-4 text-sm font-medium text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">Projects</button>
+            </div>
+
+            <!-- Overview Tab Content -->
+            <div class="space-y-4">
+              <div class="grid gap-4 md:grid-cols-3">
+                <!-- Completion Rate Card -->
+                <div class="rounded-lg border bg-white p-4 shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                  <div class="pb-2">
+                    <h3 class="text-sm font-medium">Completion Rate</h3>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div class="text-2xl font-bold">65%</div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-500" fill="none"
+                      viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div class="mt-2 h-2 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-gray-700">
+                    <div class="h-full w-[65%] rounded-full bg-primary-500"></div>
+                  </div>
+                  <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">13 of 20 tasks completed</p>
+                </div>
+
+                <!-- Priority Distribution Card -->
+                <div class="rounded-lg border bg-white p-4 shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                  <div class="pb-2">
+                    <h3 class="text-sm font-medium">Priority Distribution</h3>
+                  </div>
+                  <div class="space-y-2">
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center">
+                        <div class="h-3 w-3 rounded-full bg-red-500 mr-2"></div>
+                        <span class="text-sm">High</span>
+                      </div>
+                      <span class="text-sm font-medium">5</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center">
+                        <div class="h-3 w-3 rounded-full bg-yellow-500 mr-2"></div>
+                        <span class="text-sm">Medium</span>
+                      </div>
+                      <span class="text-sm font-medium">8</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center">
+                        <div class="h-3 w-3 rounded-full bg-green-500 mr-2"></div>
+                        <span class="text-sm">Low</span>
+                      </div>
+                      <span class="text-sm font-medium">7</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Upcoming Deadlines Card -->
+                <div class="rounded-lg border bg-white p-4 shadow-sm dark:bg-gray-800 dark:border-gray-700">
+                  <div class="pb-2">
+                    <h3 class="text-sm font-medium">Upcoming Deadlines</h3>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Next 7 days</p>
+                  </div>
+                  <div class="text-2xl font-bold flex items-center">
+                    4
+                    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-4 w-4 text-gray-500 dark:text-gray-400"
+                      fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div class="mt-2 space-y-1">
+                    <div class="text-xs truncate">Complete project proposal - Apr 15, 2025</div>
+                    <div class="text-xs truncate">Schedule team meeting - Apr 12, 2025</div>
+                    <div class="text-xs truncate">Prepare presentation - Apr 14, 2025</div>
+                    <div class="text-xs text-gray-500 dark:text-gray-400">+1 more</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Task List Section -->
+        <div class="mt-6">
+          <div class="mb-4 flex items-center justify-between">
+            <h2 class="text-xl font-semibold">All Tasks</h2>
+          </div>
+
+          <!-- Task Grid -->
+          <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <!-- Task Card 1 -->
+            <div class="rounded-lg border bg-white shadow-sm dark:bg-gray-800 dark:border-gray-700">
+              <div class="flex flex-row items-start justify-between space-y-0 p-4 pb-2">
+                <div>
+                  <h3 class="font-medium leading-none">Complete project proposal</h3>
+                  <p class="text-sm text-gray-500 dark:text-gray-400 pt-1">Work</p>
+                </div>
+                <div class="relative">
+                  <button
+                    class="inline-flex h-8 w-8 items-center justify-center rounded-md text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                    </svg>
+                    <span class="sr-only">Open menu</span>
+                  </button>
+                </div>
+              </div>
+              <div class="p-4 pt-0">
+                <p class="text-sm">Draft and submit the Q3 project proposal with budget estimates</p>
+              </div>
+              <div class="flex flex-col space-y-3 p-4 pt-2">
+                <div class="flex w-full items-center text-sm text-gray-500 dark:text-gray-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  Apr 13, 2025
+                </div>
+                <div class="flex w-full flex-wrap gap-2">
+                  <span
+                    class="inline-flex items-center rounded-md border-2 border-blue-500 px-2 py-1 text-xs font-medium text-blue-700 dark:text-blue-400">
+                    To Do
+                  </span>
+                  <span
+                    class="inline-flex items-center rounded-md border-2 border-red-500 px-2 py-1 text-xs font-medium text-red-700 dark:text-red-400">
+                    High
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Task Card 2 -->
+            <div class="rounded-lg border bg-white shadow-sm dark:bg-gray-800 dark:border-gray-700 opacity-60">
+              <div class="flex flex-row items-start justify-between space-y-0 p-4 pb-2">
+                <div>
+                  <h3 class="font-medium leading-none line-through">Schedule team meeting</h3>
+                  <p class="text-sm text-gray-500 dark:text-gray-400 pt-1">Work</p>
+                </div>
+                <div class="relative">
+                  <button
+                    class="inline-flex h-8 w-8 items-center justify-center rounded-md text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                    </svg>
+                    <span class="sr-only">Open menu</span>
+                  </button>
+                </div>
+              </div>
+              <div class="p-4 pt-0">
+                <p class="text-sm">Set up weekly sync with design and development teams</p>
+              </div>
+              <div class="flex flex-col space-y-3 p-4 pt-2">
+                <div class="flex w-full items-center text-sm text-gray-500 dark:text-gray-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  Apr 12, 2025
+                </div>
+                <div class="flex w-full flex-wrap gap-2">
+                  <span
+                    class="inline-flex items-center rounded-md border-2 border-green-500 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-400">
+                    Completed
+                  </span>
+                  <span
+                    class="inline-flex items-center rounded-md border-2 border-yellow-500 px-2 py-1 text-xs font-medium text-yellow-700 dark:text-yellow-400">
+                    Medium
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Task Card 3 -->
+            <div class="rounded-lg border bg-white shadow-sm dark:bg-gray-800 dark:border-gray-700">
+              <div class="flex flex-row items-start justify-between space-y-0 p-4 pb-2">
+                <div>
+                  <h3 class="font-medium leading-none">Grocery shopping</h3>
+                  <p class="text-sm text-gray-500 dark:text-gray-400 pt-1">Personal</p>
+                </div>
+                <div class="relative">
+                  <button
+                    class="inline-flex h-8 w-8 items-center justify-center rounded-md text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                    </svg>
+                    <span class="sr-only">Open menu</span>
+                  </button>
+                </div>
+              </div>
+              <div class="p-4 pt-0">
+                <p class="text-sm">Buy ingredients for dinner party on Saturday</p>
+              </div>
+              <div class="flex flex-col space-y-3 p-4 pt-2">
+                <div class="flex w-full items-center text-sm text-gray-500 dark:text-gray-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  Apr 14, 2025
+                </div>
+                <div class="flex w-full flex-wrap gap-2">
+                  <span
+                    class="inline-flex items-center rounded-md border-2 border-blue-500 px-2 py-1 text-xs font-medium text-blue-700 dark:text-blue-400">
+                    To Do
+                  </span>
+                  <span
+                    class="inline-flex items-center rounded-md border-2 border-green-500 px-2 py-1 text-xs font-medium text-green-700 dark:text-green-400">
+                    Low
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Task Card 4 -->
+            <div class="rounded-lg border bg-white shadow-sm dark:bg-gray-800 dark:border-gray-700">
+              <div class="flex flex-row items-start justify-between space-y-0 p-4 pb-2">
+                <div>
+                  <h3 class="font-medium leading-none">Fix kitchen sink</h3>
+                  <p class="text-sm text-gray-500 dark:text-gray-400 pt-1">Home</p>
+                </div>
+                <div class="relative">
+                  <button
+                    class="inline-flex h-8 w-8 items-center justify-center rounded-md text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                    </svg>
+                    <span class="sr-only">Open menu</span>
+                  </button>
+                </div>
+              </div>
+              <div class="p-4 pt-0">
+                <p class="text-sm">Call plumber or watch tutorial to fix the leaking sink</p>
+              </div>
+              <div class="flex flex-col space-y-3 p-4 pt-2">
+                <div class="flex w-full items-center text-sm text-gray-500 dark:text-gray-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  Apr 16, 2025
+                </div>
+                <div class="flex w-full flex-wrap gap-2">
+                  <span
+                    class="inline-flex items-center rounded-md border-2 border-purple-500 px-2 py-1 text-xs font-medium text-purple-700 dark:text-purple-400">
+                    In Progress
+                  </span>
+                  <span
+                    class="inline-flex items-center rounded-md border-2 border-yellow-500 px-2 py-1 text-xs font-medium text-yellow-700 dark:text-yellow-400">
+                    Medium
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Task Card 5 -->
+            <div class="rounded-lg border bg-white shadow-sm dark:bg-gray-800 dark:border-gray-700">
+              <div class="flex flex-row items-start justify-between space-y-0 p-4 pb-2">
+                <div>
+                  <h3 class="font-medium leading-none">Prepare presentation</h3>
+                  <p class="text-sm text-gray-500 dark:text-gray-400 pt-1">Work</p>
+                </div>
+                <div class="relative">
+                  <button
+                    class="inline-flex h-8 w-8 items-center justify-center rounded-md text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                    </svg>
+                    <span class="sr-only">Open menu</span>
+                  </button>
+                </div>
+              </div>
+              <div class="p-4 pt-0">
+                <p class="text-sm">Create slides for the client meeting on Thursday</p>
+              </div>
+              <div class="flex flex-col space-y-3 p-4 pt-2">
+                <div class="flex w-full items-center text-sm text-gray-500 dark:text-gray-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  Apr 13, 2025
+                </div>
+                <div class="flex w-full flex-wrap gap-2">
+                  <span
+                    class="inline-flex items-center rounded-md border-2 border-purple-500 px-2 py-1 text-xs font-medium text-purple-700 dark:text-purple-400">
+                    In Progress
+                  </span>
+                  <span
+                    class="inline-flex items-center rounded-md border-2 border-red-500 px-2 py-1 text-xs font-medium text-red-700 dark:text-red-400">
+                    High
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+
+</html>
