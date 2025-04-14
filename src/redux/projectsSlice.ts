@@ -2,17 +2,20 @@ import { Project } from '@/types/project.type';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 
+const API_URL = "https://ng-json-api-production.up.railway.app"
+
+
 export const fetchProjectById = createAsyncThunk(
   'projects/fetchById',
   async (projectId: number) => {
-    const res = await fetch(`http://localhost:3001/projects/${projectId}`);
+    const res = await fetch(`${API_URL}/${projectId}`);
     if (!res.ok) throw new Error('Failed to fetch project');
     return await res.json();
   }
 );
 
 export const fetchProjects = createAsyncThunk('projects/fetch', async () => {
-  const res = await fetch('http://localhost:3001/projects');
+  const res = await fetch(`${API_URL}/projects`);
   if (!res.ok) throw new Error('Failed to fetch projects');
   return await res.json();
 });
@@ -21,7 +24,7 @@ export const fetchProjects = createAsyncThunk('projects/fetch', async () => {
 export const addProject = createAsyncThunk(
   'projects/add',
   async (newProject: Omit<Project, 'id'>) => {
-    const res = await fetch('http://localhost:3001/projects', {
+    const res = await fetch(`${API_URL}/projects`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newProject),

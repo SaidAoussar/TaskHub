@@ -2,10 +2,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { Task } from '@/types/task.type';
 
+const API_URL = "https://ng-json-api-production.up.railway.app"
+
+
 export const fetchTasksByProject = createAsyncThunk(
   'tasks/fetchByProject',
   async (projectId: number) => {
-    const res = await fetch(`http://localhost:3001/tasks?projectId=${projectId}`);
+    const res = await fetch(`${API_URL}/tasks?projectId=${projectId}`);
     if (!res.ok) throw new Error('Failed to fetch tasks');
     return await res.json();
   }
@@ -15,7 +18,7 @@ export const fetchTasksByProject = createAsyncThunk(
 export const fetchAllTasks = createAsyncThunk(
   'tasks/fetchAll',
   async () => {
-    const res = await fetch('http://localhost:3001/tasks');
+    const res = await fetch(`${API_URL}/tasks`);
     if (!res.ok) throw new Error('Failed to fetch all tasks');
     return await res.json();
   }
@@ -24,7 +27,7 @@ export const fetchAllTasks = createAsyncThunk(
 export const addTask = createAsyncThunk(
   'tasks/add',
   async (newTask: Omit<Task, 'id'>) => {
-    const res = await fetch('http://localhost:3001/tasks', {
+    const res = await fetch(`${API_URL}/tasks`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newTask),
@@ -37,7 +40,7 @@ export const addTask = createAsyncThunk(
 export const deleteTask = createAsyncThunk(
   'tasks/delete',
   async (taskId: string) => {
-    const res = await fetch(`http://localhost:3001/tasks/${taskId}`, {
+    const res = await fetch(`${API_URL}/tasks/${taskId}`, {
       method: 'DELETE',
     });
     if (!res.ok) throw new Error('Failed to delete task');
@@ -48,7 +51,7 @@ export const deleteTask = createAsyncThunk(
 export const updateTask = createAsyncThunk(
   'tasks/update',
   async (task: Task) => {
-    const res = await fetch(`http://localhost:3001/tasks/${task.id}`, {
+    const res = await fetch(`${API_URL}/tasks/${task.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(task),
