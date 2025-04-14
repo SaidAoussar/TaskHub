@@ -3,7 +3,9 @@
 import type React from "react"
 
 import { useState } from "react"
-import type { Task, Project } from "@/lib/types"
+import type { Project } from "@/types/project.type"
+import type { Task } from "@/types/task.type"
+
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog"

@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import type { Project } from "@/lib/types"
+import type { Project } from "@/types/project.type"
 
 interface ProjectFormProps {
   onSubmit: (project: Omit<Project, "id" | "createdAt">) => void

@@ -11,9 +11,9 @@ import { RootState } from "@/redux/store";
 
 interface TaskCardProps {
   task: Task
-  onToggleStatus?: (taskId: number) => void
+  onToggleStatus?: (taskId: string) => void
   onEdit?: (task: Task) => void
-  onDelete?: (taskId: number) => void
+  onDelete?: (taskId: string) => void
 }
 
 export function TaskCard({ task, onToggleStatus, onEdit, onDelete }: TaskCardProps) {
