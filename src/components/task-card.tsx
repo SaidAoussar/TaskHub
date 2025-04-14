@@ -48,7 +48,6 @@ export function TaskCard({ task, onToggleStatus, onEdit, onDelete }: TaskCardPro
           <h3 className={`font-medium leading-none ${task.status === "completed" ? "line-through" : ""}`}>
             {task.title}
           </h3>
-          {/* project name */}
           <p className="text-sm text-muted-foreground pt-1">{project.name}</p>
         </div>
         <DropdownMenu>

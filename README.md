@@ -1,64 +1,78 @@
-# React + TypeScript + Vite
+# ✅ TaskHub – React Task Management App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Task management web application built with **React + Redux Toolkit** and a mock backend using **JSON Server**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- 🗂 Manage projects and associated tasks  
+- 📝 Create, update, and delete tasks  
+- ✅ Task status toggling and filtering  
+- 📊 Dashboard view with task statistics  
+- 💻 Responsive UI using Tailwind CSS  
+- 🛠 Mock API powered by JSON Server  
+- 🌍 Ready for deployment on Netlify & Railway  
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 📦 Tech Stack
+
+| Frontend      | State Management | Backend       | Styling      | Deployment     |
+|---------------|------------------|---------------|--------------|----------------|
+| React + Vite  | Redux Toolkit    | JSON Server   | Tailwind CSS | Netlify / Railway |
+
+---
+
+## 🌍 Deployment
+
+| Part      | URL                                                                 |
+|-----------|----------------------------------------------------------------------|
+| 🖥 Frontend | [https://taskhub-react.vercel.app](https://taskhub-react.vercel.app)         |
+| 🗃 Backend  | [https://taskhub-json.up.railway.app](https://taskhub-json.up.railway.app)   |
+
+---
+
+## ⚙️ Requirements
+
+- Node.js  
+- npm  
+
+---
+
+## 🧪 Installation
+
+To install and run this project on your local machine:
+
+1. **Clone the repository**:
+
+```bash
+git clone https://github.com/SaidAoussar/taskhub.git
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. **Navigate to the project directory**:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+cd taskhub
 ```
 
- build a simplified UI Design for task management application called "TaskHub" that allows users to create, organize, and track tasks across different projects. use React tailwind css and shadcn/ui
+3. **Install dependencies**:
 
-this my data shape:
-projects : id, name, description, createdAt, color
-tasks : id, projectId, title, description, status, priority, createdAt, dueDate
+```bash
+npm install
+```
 
+4. **Start the frontend development server**:
 
-add search for task, and 
-section of static with (projects progress and and other thing),
+```bash
+npm run dev
+```
+
+5. **Start the JSON Server backend:**:
+
+```bash
+npm run server
+```
+
+6.  Open your browser and navigate to **` http://localhost:5173/`**
+7.  For backend navigate to **` http://localhost:3001/`**
